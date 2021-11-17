@@ -39,8 +39,4 @@ public class Pessoa {
     public void removeMascara(){
         this.identificador = this.identificador.replaceAll("[^0-9]+","");
     }
-
-    public void verificaTipoIdentificador(){
-
-    }
 }

@@ -43,23 +43,22 @@ public class PessoaController {
         try {
             if(criarPessoaDTO.validaCriarPessoaDTO()){
                 return "Parametros Invalidos";
-            }else{
-
-                Pessoa pessoa = criarPessoaDTO.criarPessoaDTOParaPessoa();
-                pessoa.removeMascara();
-
-                if(pessoa.getIdentificador().length() == 11){
-                    pessoa.setTipoIdentificador("CPF");
-                }
-                else if(pessoa.getIdentificador().length() == 14){
-                    pessoa.setTipoIdentificador("CNPJ");
-                }
-                else{
-                    return "Identificador invalido";
-                }
-
-                return pessoaService.salvarPessoa(pessoa);
             }
+
+            Pessoa pessoa = criarPessoaDTO.criarPessoaDTOParaPessoa();
+            pessoa.removeMascara();
+
+            if(pessoa.getIdentificador().length() == 11){
+                pessoa.setTipoIdentificador("CPF");
+            }
+            else if(pessoa.getIdentificador().length() == 14){
+                pessoa.setTipoIdentificador("CNPJ");
+            }
+            else{
+                return "Identificador invalido";
+            }
+
+            return pessoaService.salvarPessoa(pessoa);
         } catch (Exception e) {
             String mensagem = "Erro ao salvar pessoa";
             log.error(mensagem + ": " + e.getMessage());
