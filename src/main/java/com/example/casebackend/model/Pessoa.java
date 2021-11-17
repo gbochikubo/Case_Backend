@@ -21,19 +21,15 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    @NotFound(action = NotFoundAction.IGNORE)
     private Long id;
 
     @Column(name="nome")
-    @NotNull
     private String nome;
 
     @Column(name="identificador")
-    @NotNull
     private String identificador;
 
     @Column(name="tipoIdentificador")
-    @NotNull
     private String tipoIdentificador;
 
     public void removeMascara(){
