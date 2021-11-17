@@ -1,7 +1,7 @@
 package com.example.casebackend.controller;
 
-import com.example.casebackend.controller.dto.AtualizarPessoaDTO;
-import com.example.casebackend.controller.dto.CriarPessoaDTO;
+import com.example.casebackend.model.dto.AtualizarPessoaDTO;
+import com.example.casebackend.model.dto.CriarPessoaDTO;
 import com.example.casebackend.model.Pessoa;
 import com.example.casebackend.service.PessoaService;
 import lombok.extern.log4j.Log4j2;
@@ -21,7 +21,7 @@ public class PessoaController {
             return pessoaService.buscarPessoaPorId(id);
         } catch (Exception e) {
             String mensagem = "Erro ao buscar Pessoa";
-            log.error(mensagem + ": " + e.getMessage());
+            log.error("Erro executando buscarPessoaPorId: " + e.getMessage());
             return mensagem;
         }
     }
@@ -30,10 +30,10 @@ public class PessoaController {
     public Object listarPessoas() {
         try {
             return pessoaService.buscarTodasPessoas();
-        } catch (Exception ex) {
+        } catch (Exception e) {
             String mensagem = "Erro ao listar pessoas";
-            log.error(mensagem);
-            return mensagem + ": " + ex.getMessage();
+            log.error("Erro executando listaPessoas: " + e.getMessage());
+            return mensagem;
         }
     }
 
@@ -48,20 +48,10 @@ public class PessoaController {
             Pessoa pessoa = criarPessoaDTO.criarPessoaDTOParaPessoa();
             pessoa.removeMascara();
 
-            if(pessoa.getIdentificador().length() == 11){
-                pessoa.setTipoIdentificador("CPF");
-            }
-            else if(pessoa.getIdentificador().length() == 14){
-                pessoa.setTipoIdentificador("CNPJ");
-            }
-            else{
-                return "Identificador invalido";
-            }
-
             return pessoaService.salvarPessoa(pessoa);
         } catch (Exception e) {
-            String mensagem = "Erro ao salvar pessoa";
-            log.error(mensagem + ": " + e.getMessage());
+            String mensagem = "Erro ao salvar pessoa, verifique se os pametros foram passados corretamente";
+            log.error("Erro executando salvarPessoa: " + e.getMessage());
             return mensagem;
         }
     }
@@ -81,20 +71,10 @@ public class PessoaController {
             Pessoa pessoa = atualizarPessoaDTO.atualizaPessoaDTOParaPessoa();
             pessoa.removeMascara();
 
-            if(pessoa.getIdentificador().length() == 11){
-                pessoa.setTipoIdentificador("CPF");
-            }
-            else if(pessoa.getIdentificador().length() == 14){
-                pessoa.setTipoIdentificador("CNPJ");
-            }
-            else{
-                return "Identificador invalido";
-            }
-
             return pessoaService.salvarPessoa(pessoa);
         } catch (Exception e) {
-            String mensagem = "Erro ao atualizar pessoa";
-            log.error(mensagem + ": " + e.getMessage());
+            String mensagem = "Erro ao atualizar pessoa, verifique se os pametros foram passados corretamente";
+            log.error("Erro executando atualizarPessoa: " + e.getMessage());
             return mensagem;
         }
     }
@@ -103,11 +83,16 @@ public class PessoaController {
     @ResponseBody
     public Object removerPessoaPorId(@PathVariable("id") Long idPessoa){
         try {
+
+            if(!pessoaService.verificaExistenciaPessoaPorId(idPessoa)){
+                return "Pessoa não localizada";
+            }
+
             pessoaService.removerPessoaPorId(idPessoa);
             return "Pessoa removida com sucesso.";
         } catch (Exception e) {
             String mensagem = "Erro ao remover pessoa";
-            log.error(mensagem + ": " + e.getMessage());
+            log.error("Erro executando removerPessoaPorId: " + e.getMessage());
             return mensagem;
         }
     }

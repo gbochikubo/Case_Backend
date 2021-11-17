@@ -12,7 +12,7 @@ public class CaseBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CaseBackendApplication.class, args);
-        log.info("CaseBackend foi iniciado com sucesso a {}", LocalDateTime.now());
+        log.info("CaseBackend foi iniciado com sucesso as {}", LocalDateTime.now());
     }
 
 }

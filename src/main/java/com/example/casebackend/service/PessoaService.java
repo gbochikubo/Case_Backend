@@ -17,6 +17,15 @@ public class PessoaService {
 
     public Pessoa salvarPessoa(Pessoa pessoa) throws Exception{
         try{
+            if(pessoa.getIdentificador().length() == 11){
+                pessoa.setTipoIdentificador("CPF");
+            }
+            else if(pessoa.getIdentificador().length() == 14){
+                pessoa.setTipoIdentificador("CNPJ");
+            }
+            else{
+                throw new Exception("Identificador Invalido");
+            }
             return perssoaRepository.save(pessoa);
         }catch (Exception e){
             String mensagem = "Erro ao executar salvarPessoa: " + pessoa.getId();

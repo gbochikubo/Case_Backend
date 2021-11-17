@@ -26,7 +26,7 @@ public class PessoaServiceTest {
 
     @Before
     public void iniciaMocks(){
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class PessoaServiceTest {
         Pessoa pessoa1 = new Pessoa();
         pessoa1.setId((long) 1);
         pessoa1.setNome("Guilherme");
-        pessoa1.setIdentificador("123456789");
+        pessoa1.setIdentificador("78579417511");
         pessoa1.setTipoIdentificador("CPF");
 
         Pessoa pessoa2 = new Pessoa();
@@ -56,13 +56,26 @@ public class PessoaServiceTest {
         Pessoa pessoa1 = new Pessoa();
         pessoa1.setId((long) 1);
         pessoa1.setNome("Guilherme");
-        pessoa1.setIdentificador("123456789");
+        pessoa1.setIdentificador("78579417511");
         pessoa1.setTipoIdentificador("CPF");
 
         Mockito.when(pessoaRepository.getById((long) 1)).thenReturn(pessoa1);
 
-        Pessoa pessoa = pessoaRepository.getById((long) 1);
+        Pessoa pessoa = service.buscarPessoaPorId((long) 1);
 
         Assert.assertEquals(pessoa1, pessoa);
+    }
+
+
+    @Test (expected = Exception.class)
+    public void salvarPessoaDeveRetornarErroTest() throws Exception{
+
+        Pessoa pessoa1 = new Pessoa();
+        pessoa1.setId((long) 1);
+        pessoa1.setNome("Guilherme");
+        pessoa1.setIdentificador("123");
+        pessoa1.setTipoIdentificador("CPF");
+
+        service.salvarPessoa(pessoa1);
     }
 }

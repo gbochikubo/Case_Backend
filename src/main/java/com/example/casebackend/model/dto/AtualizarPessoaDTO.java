@@ -1,4 +1,4 @@
-package com.example.casebackend.controller.dto;
+package com.example.casebackend.model.dto;
 
 import com.example.casebackend.model.Pessoa;
 import lombok.AllArgsConstructor;
