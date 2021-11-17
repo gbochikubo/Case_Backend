@@ -8,11 +8,11 @@ Este é um projeto utilizando Java e Spring para gerenciamento de pessoas.
 
 Os seguintes endpoints são disponibilizados para o gerenciamento:
 
-*Cria uma nova pessoa: POST/pessoa/cadastrar
-*Busca uma determinada pessoa pelo id: GET/pessoa/{id}
-*Atualiza os dados de uma determinada pessoa: PUT/pessoa/atualizar
-*Lista todas as pessoas contidas no banco de dados: GET/pessoa/listar
-*Detela uma pessoa pelo id: DELETE/pessoa/{id}
+*Cria uma nova pessoa: `POST/pessoa/cadastrar` <br/>
+*Busca uma determinada pessoa pelo id: `GET/pessoa/{id}` <br/>
+*Atualiza os dados de uma determinada pessoa: `PUT/pessoa/atualizar` <br/>
+*Lista todas as pessoas contidas no banco de dados: `GET/pessoa/listar` <br/>
+*Detela uma pessoa pelo id: `DELETE/pessoa/{id}` <br/>
 
 `POST/pessoa/cadastrar`
 
@@ -28,7 +28,7 @@ Para cadastrar uma nova pessoa os seguintes parametros devem ser passados:
 ```
 
 **Onde:**
-`nome` - String.
+`nome` - String. <br/>
 `identificador` - String - Letras e caracteres especiais serão removidos caso informados.
 
 ### Documentation
