@@ -12,7 +12,7 @@ Os seguintes endpoints são disponibilizados para o gerenciamento:
 * Busca uma determinada pessoa pelo id: `GET/pessoa/{id}` <br/>
 * Atualiza os dados de uma determinada pessoa: `PUT/pessoa/atualizar` <br/>
 * Lista todas as pessoas contidas no banco de dados: `GET/pessoa/listar` <br/>
-* Detela uma pessoa pelo id: `DELETE/pessoa/{id}` <br/>
+* Deleta uma pessoa pelo id: `DELETE/pessoa/{id}` <br/>
 
 `POST/pessoa/cadastrar`
 
